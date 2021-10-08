@@ -1,0 +1,48 @@
+{% import "bootstrap/wtf.html" as wtf %}
+{% extends 'index.html' %}
+
+{% block header %}
+<h1>{% block title %}Sessões{% endblock %}</h1>
+{% endblock %}
+{% block content %}
+
+
+
+
+
+<div class="container">
+
+
+    <h1 class="text-center">Paciente</h1>
+
+    <div class="table-responsive">
+
+        <table class="table table-dark">
+            <thead>
+                <tr>
+                    <th scope="col">Data&Hora</th>
+                    <th scope="col">Classificação</th>
+                    <th scope="col">Percentagem</th>
+
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for row  in sessoes %}
+                <tr>
+                    <td>
+                        {{row.Sessao.Data_Hora}}
+                    </td>
+                    <td>
+                        {{row.Resultados.tipo_de_resultado}}
+                    </td>
+                    <td>
+                        {{row.Resultados.percentagem}}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

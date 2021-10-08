@@ -1,0 +1,50 @@
+{% import "bootstrap/wtf.html" as wtf %}
+{% extends 'index.html' %}
+
+{% block header %}
+<h1>{% block title %}Resultado{% endblock %}</h1>
+{% endblock %}
+{% block content %}
+
+
+
+
+<script>
+
+
+
+
+
+</script>
+<div class="container-fluid">
+    <h1 class="text-center"> Resultado</h1>
+    <div class="row">
+
+
+        <div class="col-md-6 offset-md-3">
+
+
+
+
+            <p class="text-center">O seu resultado foi {{percentage}} </p>
+
+            <br>
+
+            <p class="text-center">Classificação: {{rating}}</p>
+            <div class="row">
+                <div class="col text-center">
+                    <form method=post action="{{ url_for('submetersessao') }}">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+                        <button type="submit" class="btn btn-info btn-sm" value="Submit">Submeter Sessão</button>
+                    </form>
+
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

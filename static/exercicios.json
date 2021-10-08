@@ -1,0 +1,107 @@
+{
+    "Exercicios": [{
+            "exercicio": "1",
+            "emocao": "Feliz",
+            "url": "/static/Imagens/1.jpg",
+            "escolha1": "Feliz",
+            "escolha2": "Neutro",
+            "escolha3": "Triste",
+            "imagem1": "/static/Imagens/Happy.png",
+            "imagem2": "/static/Imagens/Neutral.png",
+            "imagem3": "/static/Imagens/Sad.png"
+
+        },
+        {
+            "exercicio": "2",
+            "emocao": "Medo",
+            "url": "/static/Imagens/2.jpg",
+            "escolha1": "Neutro",
+            "escolha2": "Medo",
+            "escolha3": "Desgosto",
+            "imagem1": "/static/Imagens/Neutral.png",
+            "imagem2": "/static/Imagens/Scared.png",
+            "imagem3": "/static/Imagens/Disgusted.png"
+        },
+        {
+            "exercicio": "3",
+            "emocao": "Zangado",
+            "url": "/static/Imagens/3.png",
+            "escolha1": "Zangado",
+            "escolha2": "Neutro",
+            "escolha3": "Medo",
+            "imagem1": "/static/Imagens/Angry.png",
+            "imagem2": "/static/Imagens/Neutral.png",
+            "imagem3": "/static/Imagens/Scared.png"
+        }, {
+            "exercicio": "4",
+            "emocao": "Neutro",
+            "url": "/static/Imagens/4.jpg",
+            "escolha1": "Neutro",
+            "escolha2": "Feliz",
+            "escolha3": "Zangado",
+            "imagem1": "/static/Imagens/Neutral.png",
+            "imagem2": "/static/Imagens/Happy.png",
+            "imagem3": "/static/Imagens/Angry.png"
+        }, {
+            "exercicio": "5",
+            "emocao": "Desgosto",
+            "url": "/static/Imagens/5.jpg",
+            "escolha1": "Desgosto",
+            "escolha2": "Feliz",
+            "escolha3": "Triste",
+            "imagem1": "/static/Imagens/Disgusted.png",
+            "imagem2": "/static/Imagens/Happy.png",
+            "imagem3": "/static/Imagens/Sad.png"
+        }, {
+            "exercicio": "6",
+            "emocao": "Surpresa",
+            "url": "/static/Imagens/6.jpg",
+            "escolha1": "Desgosto",
+            "escolha2": "Neutro",
+            "escolha3": "Surpresa",
+            "imagem1": "/static/Imagens/Disgusted.png",
+            "imagem2": "/static/Imagens/Neutral.png",
+            "imagem3": "/static/Imagens/Surprised.png"
+        }, {
+            "exercicio": "7",
+            "emocao": "Triste",
+            "url": "/static/Imagens/7.jpg",
+            "escolha1": "Zangado",
+            "escolha2": "Neutro",
+            "escolha3": "Triste",
+            "imagem1": "/static/Imagens/Angry.png",
+            "imagem2": "/static/Imagens/Neutral.png",
+            "imagem3": "/static/Imagens/Sad.png"
+        }, {
+            "exercicio": "8",
+            "emocao": "Feliz",
+            "url": "/static/Imagens/8.jpg",
+            "escolha1": "Feliz",
+            "escolha2": "Medo",
+            "escolha3": "Triste",
+            "imagem1": "/static/Imagens/Happy.png",
+            "imagem2": "/static/Imagens/Neutral.png",
+            "imagem3": "/static/Imagens/Sad.png"
+        }, {
+            "exercicio": "9",
+            "emocao": "Desgosto",
+            "url": "/static/Imagens/9.png",
+            "escolha1": "Zangado",
+            "escolha2": "Desgosto",
+            "escolha3": "Surpresa",
+            "imagem1": "/static/Imagens/Angry.png",
+            "imagem2": "/static/Imagens/Disgusted.png",
+            "imagem3": "/static/Imagens/Surprised.png"
+        }, {
+            "exercicio": "10",
+            "emocao": "Medo",
+            "url": "/static/Imagens/10.jpg",
+            "escolha1": "Medo",
+            "escolha2": "Neutro",
+            "escolha3": "Triste",
+            "imagem1": "/static/Imagens/Scared.png",
+            "imagem2": "/static/Imagens/Neutral.png",
+            "imagem3": "/static/Imagens/Sad.png"
+        }
+    ]
+}

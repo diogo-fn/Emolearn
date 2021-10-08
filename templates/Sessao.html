@@ -1,0 +1,172 @@
+{% import "bootstrap/wtf.html" as wtf %}
+{% extends 'index.html' %}
+
+{% block header %}
+<h1>{% block title %}Sessão{% endblock %}</h1>
+{% endblock %}
+{% block content %}
+
+
+<meta name="csrf-token" content="{{ csrf_token() }}">
+<script>
+    var resultado;
+    var ex = {};
+    var randomdata = {};
+    var emocao;
+    var questão;
+    var count = 0;
+    var i = 0;
+    var number = 1;
+    var csrftoken = "{{ csrf_token() }}";
+    //Função de comparar respostas
+    function compare_answer(answer_cam, answer_exercise) {
+
+        if (answer_cam == answer_exercise) {
+            // $("#alert_correct button").after('<span>Emoção Certa</span>');
+            // $('#alert_correct').fadeIn('slow');
+            alert("Emoção Certa ");
+
+            return 1;
+        } else {
+            //  $("#alert_error button").after('<span>Emoção errada, a correta é ' + answer_exercise + '</span>');
+            // $('#alert_error').fadeIn('slow');
+            alert("Emoção Errada");
+            return 0;
+        }
+    }
+
+    //Função de obter o próximo exercicio
+    function nextquestion() {
+        i = i + 1;
+        console.log(i);
+        document.getElementById("number").innerHTML = ex.Exercicios[i].exercicio;
+        $('#image').hide();
+        $('#image').attr('src', ex.Exercicios[i].url).show();
+        document.getElementById("choice1").innerHTML = ex.Exercicios[i].escolha1;
+        $('#image1').hide();
+        $('#image1').attr('src', ex.Exercicios[i].imagem1).show();
+        document.getElementById("choice2").innerHTML = ex.Exercicios[i].escolha2;
+        $('#image2').hide();
+        $('#image2').attr('src', ex.Exercicios[i].imagem2).show();
+        document.getElementById("choice3").innerHTML = ex.Exercicios[i].escolha3;
+        $('#image3').hide();
+        $('#image3').attr('src', ex.Exercicios[i].imagem3).show();
+    }
+    //Função de enviar resultados
+    function sendResult(resultados) {
+        console.log(resultados);
+        var csrftoken = $('meta[name=csrf-token]').attr('content')
+
+        $.ajaxSetup({
+            beforeSend: function (xhr, settings) {
+                if (!/^(GET|HEAD|OPTIONS|TRACE)$/i.test(settings.type) && !this.crossDomain) {
+                    xhr.setRequestHeader("X-CSRFToken", csrftoken)
+                }
+            }
+        })
+
+        $.ajax({
+                url: "/submeterresultados/",
+                type: "POST",
+                contentType: "application/json",
+                data: resultados
+            })
+            .done(function (response) {
+
+                window.location.replace("/resultados/")
+
+            });
+    }
+
+    $(document).ready(function () {
+        $.getJSON('/static/exercicios.json',
+            function (data) {
+                ex = data;
+                console.log(ex.Exercicios[i].url);
+                $('#image').attr('src', ex.Exercicios[i].url);
+                document.getElementById("number").innerHTML = ex.Exercicios[i].exercicio;
+                $('#image1').attr('src', ex.Exercicios[i].imagem1);
+                $('#image2').attr('src', ex.Exercicios[i].imagem2);
+                $('#image3').attr('src', ex.Exercicios[i].imagem3);
+                document.getElementById("choice1").innerHTML = ex.Exercicios[i].escolha1;
+                document.getElementById("choice2").innerHTML = ex.Exercicios[i].escolha2;
+                document.getElementById("choice3").innerHTML = ex.Exercicios[i].escolha3;
+
+
+            }
+
+        );
+
+    });
+
+
+    //Funcionalidade do botão submeter
+    $(function () {
+        $("#b1").click(function () {
+            $.ajax({
+                type: 'GET',
+                url: '/prediction/',
+                success: function (data) {
+                    console.log(data);
+                    prediction = JSON.stringify(data.predict);
+                    emocao = JSON.stringify(ex.Exercicios[i].emocao);
+                    console.log(data);
+                    count = count + compare_answer(prediction, emocao);
+                    if (i == 9) {
+                        alert("Sessão Terminada ");
+                        var result = JSON.stringify({
+                            'Count': count
+                        });
+                        sendResult(result);
+                    } else
+                        nextquestion();
+                }
+            });
+        });
+    });
+</script>
+
+<div class="container-fluid">
+
+
+    <h1 class="text-center">Sessão</h1>
+
+    <div class="row">
+
+        <div class="col-8 col-md-8">
+            <img id="bg" src="{{ url_for('video_feed') }}">
+            <br>
+            <button id="b1" type="button">Submeter</button>
+
+        </div>
+        <div class="col-2 col-md-2">
+            <img id="image" width="360" height="480px">
+        </div>
+    </div>
+    <h2 class=" text-center">Exercicio <span id="number"></span></h2>
+
+    <div class=row>
+        <div class="col-3 offset-md-3">
+            <span id="choice1"></span>
+            <br>
+            <img id="image1" class="img-fluid" width="48px" height="48px">
+        </div>
+
+        <div class="col">
+
+            <span id=choice2></span>
+            <br>
+            <img id="image2" class="img-fluid" width="48px" height="48px">
+        </div>
+
+        <div class="col">
+            <span id="choice3"></span>
+            <br>
+            <img id="image3" class="img-fluid" width="48px" height="48px">
+
+        </div>
+    </div>
+
+
+
+    {% endblock %}

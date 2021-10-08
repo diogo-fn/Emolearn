@@ -1,0 +1,18 @@
+{% import "bootstrap/wtf.html" as wtf %}
+{% extends 'index.html' %}
+
+{% block header %}
+<h1>{% block title %}Registo de Terapeuta{% endblock %}</h1>
+{% endblock %}
+{% block content %}
+
+<h2 class="text-center">Registo de Terapeuta</h2>
+<form method="POST" action="/register/">
+    {{ form.csrf_token }}
+    <div class="col-md-12">
+        {{ wtf.quick_form(form) }}
+        <input class="btn btn-primary" type="submit" value="Submeter">
+        {% endblock %}
+
+
+        </body>

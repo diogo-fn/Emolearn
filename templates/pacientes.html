@@ -1,0 +1,108 @@
+{% import "bootstrap/wtf.html" as wtf %}
+{% extends 'index.html' %}
+
+{% block header %}
+<h1>{% block title %}Pacientes{% endblock %}</h1>
+{% endblock %}
+{% block content %}
+
+
+<h2 class="text-center">Gestão de Pacientes</h2>
+
+
+<div class="container">
+
+
+
+    <!--Adicionar Pacientes-->
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Adicionar Paciente</h4>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" action="{{ url_for('add_patients',name=session['Terapeuta']) }}">
+                        {{ form1.csrf_token }}
+                        {{ wtf.quick_form(form1) }}
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="container">
+        <div class="table-responsive">
+
+            <table class="table table-dark">
+                <thead>
+                    <tr>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Morada</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Telefone</th>
+                        <th scope="col">Ações</th>
+
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for row  in pacientes %}
+                    <tr>
+                        <td>
+                            {{row.nome}}
+                        </td>
+                        <td>
+                            {{row.morada}}
+                        </td>
+                        <td>
+                            {{row.email}}
+                        </td>
+                        <td>
+                            {{row.telefone}}
+                        </td>
+
+                        <td>
+                            <form method=post action="{{ url_for('sessao', id=row.id) }}">
+                                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+                                <button type="submit" class="btn btn-info btn-sm" value="Submit">Iniciar Sessão</button>
+                            </form>
+
+
+
+
+
+
+                            <form method=post action="{{ url_for('get_sessions', id=row.id) }}">
+                                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+                                <button type="submit" value="Submit" class="btn btn-info btn-sm">Consultar
+                                    Sessões</button>
+                            </form>
+
+                            <form method=post action="{{ url_for('remove_patients', id=row.id) }}">
+                                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+                                <button type="submit" value="Submit" class="btn btn-info btn-sm"> Remover
+                                    Paciente</button>
+                            </form>
+                        </td>
+
+
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <button type=" button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal">Adicionar
+                Paciente</button>
+
+        </div>
+    </div>
+</div>
+{% endblock %}
